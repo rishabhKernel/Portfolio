@@ -106,7 +106,7 @@ const Achievements = () => {
     {
       name: 'LeetCode',
       description: '80+ Problems Solved',
-      icon: <img src="/leetcode.png" alt="LeetCode" className="w-12 h-12 object-contain rounded-lg drop-shadow-md" />,
+      icon: <img src="/Leetcode.png" alt="LeetCode" className="w-12 h-12 object-contain rounded-lg drop-shadow-md" />,
       link: 'https://leetcode.com/u/Riishabhh_19/',
       color: 'from-yellow-400 to-orange-500',
     },
