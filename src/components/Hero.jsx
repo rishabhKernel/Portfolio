@@ -135,7 +135,7 @@ const Hero = () => {
             </motion.button>
           </Link>
           <motion.a
-            href="/Rishabh_Chaurasia_CV.pdf"
+            href={`${process.env.PUBLIC_URL}/Rishabh_Chaurasia_CV.pdf`}
             download
             whileHover={{ scale: 1.05, y: -4 }}
             whileTap={{ scale: 0.95 }}
