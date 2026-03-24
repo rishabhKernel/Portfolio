@@ -1,13 +1,607 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  scroll-behavior: smooth;
+}
+
+/* Dark Theme (Default) */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #e2e8f0;
+  overflow-x: hidden;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Light Theme - Premium Gradient Background */
+html.light body {
+  background: linear-gradient(135deg, #f0f4f8 0%, #e8f0f8 50%, #f0e8f8 100%);
+  color: #1e293b;
+}
+
+/* Scrollbar Styling - Dark */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #60a5fa;
+}
+
+/* Scrollbar Styling - Light */
+html.light ::-webkit-scrollbar-track {
+  background: #f0f4f8;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 5px;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #60a5fa;
+}
+
+/* Glassmorphism - Dark */
+.glass {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Glassmorphism - Light */
+html.light .glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+  line-height: 1.5;
+  padding-bottom: 0.1em;
+}
+
+/* Animated Background */
+.animated-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(167, 139, 250, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+html.light .animated-bg::before {
+  background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(167, 139, 250, 0.06) 0%, transparent 50%);
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #a78bfa);
+  z-index: 1000;
+}
+
+/* Fade In Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Hover Glow Effect */
+.hover-glow {
+  transition: all 0.2s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+html.light .hover-glow:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Tilt Effect */
+.tilt {
+  perspective: 1000px;
+}
+
+.tilt-inner {
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.tilt:hover .tilt-inner {
+  transform: rotateX(5deg) rotateY(5deg);
+}
+
+/* Light Theme Text Colors */
+html.light .text-white {
+  color: #1e293b;
+  transition: color 0.3s ease;
+}
+
+html.light .text-gray-300 {
+  color: #475569;
+  transition: color 0.3s ease;
+}
+
+html.light .text-gray-400 {
+  color: #64748b;
+  transition: color 0.3s ease;
+}
+
+html.light .text-gray-500 {
+  color: #78909c;
+  transition: color 0.3s ease;
+}
+
+html.light .text-gray-600 {
+  color: #64748b;
+  transition: color 0.3s ease;
+}
+
+/* Light Theme Background Colors */
+html.light .bg-slate-900 {
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+html.light .bg-slate-800 {
+  background-color: #f8fafc;
+  transition: background-color 0.3s ease;
+}
+
+html.light .bg-slate-700 {
+  background-color: #f1f5f9;
+  transition: background-color 0.3s ease;
+}
+
+html.light .bg-slate-900\/50 {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+html.light .bg-slate-800\/50 {
+  background-color: rgba(248, 250, 252, 0.5);
+}
+
+/* Light Theme Border Colors */
+html.light .border-slate-700 {
+  border-color: #e2e8f0;
+  transition: border-color 0.3s ease;
+}
+
+html.light .border-slate-600 {
+  border-color: #cbd5e1;
+  transition: border-color 0.3s ease;
+}
+
+html.light .border-slate-800 {
+  border-color: #e2e8f0;
+  transition: border-color 0.3s ease;
+}
+
+/* Light Theme Hover States */
+html.light .hover\:bg-slate-800\/50:hover {
+  background-color: rgba(248, 250, 252, 0.7);
+}
+
+html.light .hover\:bg-slate-700:hover {
+  background-color: #f1f5f9;
+}
+
+/* Light Theme Card Styles */
+html.light .card-light {
+  background: white;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+html.light .card-light:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Light Theme Button Styles */
+html.light .btn-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+html.light .btn-primary:hover {
+  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
+}
+
+html.light .btn-secondary {
+  background: transparent;
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
+  transition: all 0.3s ease;
+}
+
+html.light .btn-secondary:hover {
+  background: #eff6ff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+/* Light Theme - Blue Background Buttons */
+html.light .bg-blue-500\/20 {
+  background-color: #dbeafe !important;
+  transition: background-color 0.3s ease;
+}
+
+html.light .hover\:bg-blue-500\/30:hover {
+  background-color: #bfdbfe !important;
+}
+
+html.light .bg-blue-500\/10 {
+  background-color: #eff6ff !important;
+}
+
+html.light .hover\:bg-blue-500\/40:hover {
+  background-color: #93c5fd !important;
+}
+
+/* Light Theme - Purple Background Buttons */
+html.light .bg-purple-500\/20 {
+  background-color: #e9d5ff !important;
+  transition: background-color 0.3s ease;
+}
+
+html.light .hover\:bg-purple-500\/30:hover {
+  background-color: #d8b4fe !important;
+}
+
+html.light .bg-purple-500\/10 {
+  background-color: #faf5ff !important;
+}
+
+html.light .hover\:bg-purple-500\/40:hover {
+  background-color: #c084fc !important;
+}
+
+/* Light Theme - Text Colors for Buttons */
+html.light .text-blue-400 {
+  color: #1e40af !important;
+  transition: color 0.3s ease;
+}
+
+html.light .text-blue-300 {
+  color: #1e3a8a !important;
+}
+
+html.light .text-purple-400 {
+  color: #6b21a8 !important;
+  transition: color 0.3s ease;
+}
+
+html.light .text-purple-300 {
+  color: #581c87 !important;
+}
+
+/* Light Theme - Border Colors for Buttons */
+html.light .border-blue-500\/30 {
+  border-color: rgba(59, 130, 246, 0.5) !important;
+}
+
+html.light .hover\:border-blue-400:hover {
+  border-color: #1e40af !important;
+}
+
+html.light .border-purple-500\/30 {
+  border-color: rgba(168, 85, 247, 0.5) !important;
+}
+
+html.light .hover\:border-purple-400:hover {
+  border-color: #6b21a8 !important;
+}
+
+/* Light Theme - Gradient Buttons */
+html.light .bg-gradient-to-r {
+  transition: all 0.3s ease;
+}
+
+html.light .from-blue-500 {
+  --tw-gradient-from: #3b82f6 !important;
+}
+
+html.light .to-blue-600 {
+  --tw-gradient-to: #2563eb !important;
+}
+
+html.light .from-purple-500 {
+  --tw-gradient-from: #a855f7 !important;
+}
+
+html.light .to-pink-500 {
+  --tw-gradient-to: #ec4899 !important;
+}
+
+/* Light Theme - Skill/Tech Badges */
+html.light .px-3.py-1.bg-blue-500\/20 {
+  background-color: #dbeafe !important;
+  color: #1e40af !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
+}
+
+html.light .px-3.py-1.bg-blue-500\/20:hover {
+  background-color: #bfdbfe !important;
+  border-color: #1e40af !important;
+}
+
+html.light .px-3.py-1.bg-purple-500\/20 {
+  background-color: #e9d5ff !important;
+  color: #6b21a8 !important;
+  border-color: rgba(168, 85, 247, 0.5) !important;
+}
+
+html.light .px-3.py-1.bg-purple-500\/20:hover {
+  background-color: #d8b4fe !important;
+  border-color: #6b21a8 !important;
+}
+
+/* Light Theme - Feature Pills */
+html.light .px-2.py-1.bg-blue-500\/20 {
+  background-color: #dbeafe !important;
+  color: #1e40af !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
+}
+
+html.light .px-2.py-1.bg-blue-500\/20:hover {
+  background-color: #bfdbfe !important;
+  border-color: #1e40af !important;
+}
+
+/* Light Theme - Action Buttons with Icons */
+html.light .flex.items-center.gap-2.px-4.py-2.bg-blue-500\/20 {
+  background-color: #dbeafe !important;
+  color: #1e40af !important;
+}
+
+html.light .flex.items-center.gap-2.px-4.py-2.bg-blue-500\/20:hover {
+  background-color: #bfdbfe !important;
+}
+
+html.light .flex.items-center.gap-2.px-4.py-2.bg-purple-500\/20 {
+  background-color: #e9d5ff !important;
+  color: #6b21a8 !important;
+}
+
+html.light .flex.items-center.gap-2.px-4.py-2.bg-purple-500\/20:hover {
+  background-color: #d8b4fe !important;
+}
+
+/* Light Theme - Download/Resume Button */
+html.light .border-2.border-blue-400 {
+  border-color: #1e40af !important;
+  color: #1e40af !important;
+}
+
+html.light .border-2.border-blue-400:hover {
+  background-color: #eff6ff !important;
+}
+
+/* Light Theme - Red/Email Buttons */
+html.light .bg-red-500\/20 {
+  background-color: #fee2e2 !important;
+}
+
+html.light .hover\:bg-red-500\/40:hover {
+  background-color: #fecaca !important;
+}
+
+html.light .text-red-400 {
+  color: #991b1b !important;
+}
+
+/* Light Theme Navbar */
+html.light .navbar-light {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+html.light .navbar-light .text-gray-300 {
+  color: #475569;
+}
+
+html.light .navbar-light .text-gray-300:hover {
+  color: #3b82f6;
+}
+
+/* Light Theme Floating Elements */
+html.light .floating-glow-1 {
+  background: rgba(59, 130, 246, 0.08);
+}
+
+html.light .floating-glow-2 {
+  background: rgba(167, 139, 250, 0.06);
+}
+
+/* Light Theme Section Backgrounds */
+html.light .section-bg {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(240, 244, 248, 0.5) 100%);
+}
+
+/* Light Theme Text Shadows */
+html.light .text-shadow-light {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Light Theme Heading Styles */
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4,
+html.light h5,
+html.light h6 {
+  color: #0f172a;
+  transition: color 0.3s ease;
+}
+
+/* Light Theme Link Colors */
+html.light a {
+  color: #3b82f6;
+  transition: color 0.3s ease;
+}
+
+html.light a:hover {
+  color: #2563eb;
+}
+
+/* Light Theme Glass Cards - Enhanced */
+html.light .glass {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(59, 130, 246, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+html.light .glass:hover {
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Light Theme Badge/Pill Styles */
+html.light .badge-light {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(99, 102, 241, 0.1) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #1e40af;
+}
+
+/* Light Theme Experience Cards */
+html.light .experience-card {
+  background: white;
+  border-left: 4px solid #3b82f6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+html.light .experience-card:hover {
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+  transform: translateX(4px);
+}
+
+/* Light Theme Project Cards */
+html.light .project-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+html.light .project-card:hover {
+  box-shadow: 0 12px 24px rgba(59, 130, 246, 0.15);
+  border-color: #3b82f6;
+  transform: translateY(-4px);
+}
+
+/* Light Theme Achievement Cards */
+html.light .achievement-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 249, 255, 0.95) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+html.light .achievement-card:hover {
+  box-shadow: 0 12px 24px rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+/* Light Theme Skill Cards */
+html.light .skill-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+html.light .skill-card:hover {
+  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.12);
+  border-color: #3b82f6;
+}
+
+/* Light Theme Education Cards */
+html.light .education-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 249, 255, 0.98) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+html.light .education-card:hover {
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Light Theme Timeline Line */
+html.light .absolute.left-0.md\:left-1\/2.top-0.bottom-0.w-1 {
+  background: linear-gradient(to bottom, #3b82f6, #a855f7, #ec4899) !important;
+}
+
+html.light .absolute.left-0.md\:left-1\/2.top-0.bottom-0 {
+  background: linear-gradient(to bottom, #3b82f6, #a855f7, #ec4899) !important;
+}
+
+/* Profile Image Theme Support - Clean Single Border Design */
+.profile-container {
+  border: 4px solid #1e293b; /* Dark slate border for dark mode */
+  background-color: transparent;
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.4); /* Soft blue outer glow */
+  transition: all 0.5s ease;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+html.light .profile-container {
+  border: 4px solid #ffffff; /* White border for light mode */
+  background-color: transparent;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Soft neutral drop shadow */
 }
